@@ -1,10 +1,14 @@
+/* Ler um vetor R de 5 elementos contendo o gabarito da LOTO. 
+A seguir ler um vetor A de 10 elementos contendo uma aposta.
+A seguir imprima quantos pontos fez o apostador. */ 
+
 #include <stdio.h>
 #include <stdlib.h>
 
 
 int main(void) {
  int gabarito[5], numeros_jogados[10];
- int acerto = 0, i, j, k, duplicado = 0;
+ int acerto = 0, i, j, duplicado;
 
  for (i = 0; i < 5; i++) {
   printf("GABARITO[%i] = ", i);
@@ -12,17 +16,16 @@ int main(void) {
   system("clear");
  }
 
- 
     
-      for (k = 0; k < 10; k++) {
+      for (i = 0; i < 10; i++) {
          do {
             duplicado = 0;
             
-            printf("NUMEROS_JOGADOS[%i] = ", k);
-            scanf("%d", &numeros_jogados[k]);
+            printf("NUMEROS DO JOGADOR: ");
+            scanf("%d", &numeros_jogados[i]);
         
-            for(j = 0; j < k; j++) {
-              if (numeros_jogados[k] == numeros_jogados[j]){
+            for(j = 0; j < i; j++) {
+              if (numeros_jogados[i] == numeros_jogados[j]){
                   duplicado = 1;
                   printf("Não pode repetir números!\n");
                   getchar();
