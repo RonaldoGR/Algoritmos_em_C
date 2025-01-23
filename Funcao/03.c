@@ -59,6 +59,6 @@ float resultado (float v1, float v2, int op) {
     case 4:
      return v1 / v2;
     default:
-      return 0.0; 
+    return 0.0; 
   }
 }
