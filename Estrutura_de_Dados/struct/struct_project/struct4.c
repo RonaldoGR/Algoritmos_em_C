@@ -55,9 +55,10 @@
 #include <stdlib.h>
 #include "Cheque.h"
 
-int main (void) {
+int main(void)
+{
     int n1, n2;
-    float v1,v2;
+    float v1, v2;
 
     printf("Digite o primeiro número: ");
     scanf("%d", &n1);
@@ -86,10 +87,12 @@ int main (void) {
     float valorCheque1 = obtemValor(cheque1);
     float valorCheque2 = obtemValor(cheque2);
 
-    if (valorCheque1 > valorCheque2) {
+    if (valorCheque1 > valorCheque2)
+    {
         cheque1 = compensaCheque(cheque1);
     }
-    else {
+    else
+    {
         cheque2 = compensaCheque(cheque2);
     }
 
@@ -102,7 +105,6 @@ int main (void) {
     printf("\n");
 
     printf("Número do Cheque 1: %d\nNúmero do Cheque 2: %d\n", n1, n2);
-    
-    
+
     return 0;
 }
