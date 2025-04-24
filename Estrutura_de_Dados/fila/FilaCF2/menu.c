@@ -45,7 +45,7 @@ int main()
                  int nodos;
                  
                  if (fi.re >= fi.frente) nodosDisponiveis = fi.frente - fi.re  + 1;
-                 else nodosDisponiveis = MAX_NODOS - fi.frente - fi.re + 1;
+                 else nodosDisponiveis = MAX_NODOS - fi.frente - (fi.re + 1);
                  nodos = MAX_NODOS - nodosDisponiveis;
                  printf("Quantidade de nodos na fila: %d\n", nodos);
                  break;
