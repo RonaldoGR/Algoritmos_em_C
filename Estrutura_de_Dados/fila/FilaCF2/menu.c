@@ -23,10 +23,10 @@ int main()
                     break;
                  }
                  printf("-- Digite o dado que deseja inserir -- \n");
-                 printf("Código: ");
+                 printf("Cï¿½digo: ");
                  scanf("%d", dado.cod);
                  printf("Peso: ");
-                 scanf("%f", dado.peso)
+                 scanf("%f", dado.peso);
                  insere(&fi, dado);   
                  break;
             case 2:
@@ -39,7 +39,13 @@ int main()
                  printf("Dado %d retirado com sucesso!\n", &dado);
                  break;
             case 3:  
-
+                 int nodosDisponiveis;
+                 int nodos;
+                 
+                 if (fi.re >= fi.frente) nodosDisponiveis = fi.frente - fi.re  + 1;
+                 else nodosDisponiveis = MAX_NODOS - fi.frente - fi.re + 1;
+                 nodos = MAX_NODOS - nodosDisponiveis;
+                 printf("Quantidade de nodos na fila: %d\n", nodos);
                  break;
             case 4:
                  
