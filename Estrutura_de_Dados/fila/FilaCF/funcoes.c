@@ -2,34 +2,49 @@
 #include <stdlib.h>
 #include "filacf.h"
 
+
 void criaFila(FilaCF *f){
-     f->frente= 0;
-     f->re= -1;
+     f->frente = 0;
+     f->re = -1;
 }
 
-int insere(FilaCF *f,int dado){
-   if (estaCheia(*f)) {
+int insere(FilaCF *f,Dado dado){
+   if (estaCheia(*f) == FILA_CHEIA) {
           return FILA_CHEIA;
      }
+    if (f->re == -1){
+     f->re = f->frente;
+     f->v[f->re] = dado;
+     return SUCESSO;
+    }
   
      f->re = (f->re + 1) % MAX_NODOS;
      f->v[f->re] = dado;
      return SUCESSO;
-
-
 }
 
-int retira(FilaCF *f,int *dado){
+int retira(FilaCF *f,Dado *dado){
      if (estaVazia(*f)) {
           return FILA_VAZIA;
      }
+
      *dado = f->v[f->frente];
-     f->frente = (f->frente + 1) % MAX_NODOS;
+
+     if (f->frente == f->re) {
+          f->frente = 0;
+          f->re = -1;
+     } else {
+          f->frente = (f->frente + 1) % MAX_NODOS;
+     }
      return SUCESSO;     
 
 }
 
 int estaCheia(FilaCF f){
+     if (f.re == -1) {
+          return SUCESSO;
+     }
+
      if ((f.re + 1) % MAX_NODOS == f.frente) {
           return FILA_CHEIA;
      }
@@ -44,68 +59,74 @@ int estaVazia(FilaCF f){
 
 }
 
-int consulta(FilaCF f,int *dado){
- FilaCF f2;
-    int i, d, resul, fr, re;
-    
-    fr = f.frente;
-    re = f.re;
-    criaFila(&f2);
-    
-    for (i=fr; i<=re; i++){
-         retira(&f,&d);
-         insere(&f2,d);
-         if (*dado == d)
-            resul= SUCESSO;
-    }
+int consulta(FilaCF f){
+	if (estaVazia(f)){
+		return FILA_VAZIA;
+	}
+	printf("-- Dado da frente -- \nCódigo: %d\nPeso: %.2f\n", f.v[f.frente].cod, f.v[f.frente].peso);
+	return SUCESSO;
 
-    f.frente= fr;
-    f.re= fr-1;
-    for (i=f2.frente;i<=f2.re;i++){
-         retira(&f2,&d);
-         insere(&f,d);
-    }
-    return(resul);
+}
+
+
+int pesquisa(FilaCF *f, int codigo) {
+     FilaCF temp;
+     int tamanho, resultado;
+    
+
+     criaFila(&temp);
+
+	if (estaVazia(*f)) {
+		return FILA_VAZIA;
+	}
+
+     
+     tamanho = tamanhoFila(f);
+	 
+     Dado aux;
+     
+	 for (int i = 0; i < tamanho; i++) {
+          retira(f, &aux);
+	 	if (aux.cod == codigo) {
+               printf("\n-- Dado encontrado --\nCódigo: %d\nPeso: %.2f\n", aux.cod, aux.peso);
+			resultado = SUCESSO;
+		}
+          else {
+               resultado = DADO_INEXISTENTE;
+          }
+          insere(&temp, aux);
+	 }
+
+      while (!estaVazia(temp)) {
+          retira(&temp, &aux);
+          insere(f, aux);
+      }
+	return resultado;
 }
 
 void exibeFila(FilaCF f){
-     int i;
-     for (i=f.frente; i<=f.re; i++)
-         printf("%d ", f.v[i]);
-     printf("\nFr= %d - Re= %d\n\n",f.frente, f.re);      
+     int i = f.frente;
+          printf("\n-- EXIBINDO A FILA --\n");
+          while (i != (f.re +1) % MAX_NODOS) {
+               printf("\nCódigo: %d\n", f.v[i].cod);
+               printf("Peso: %.2f\n", f.v[i].peso);
+               i = (i + 1) % MAX_NODOS;
+          }
+     
+     printf("FRENTE: %d\nRE: %d\n\n",f.frente, f.re);      
 }
 
 
-// A lógica geral da função tenta **procurar um valor na fila (`consulta`) sem alterar o conteúdo original**, usando uma fila auxiliar. No entanto, há **problemas críticos** na implementação:
 
-// ---
-
-// ### ❌ **1. Loop `for (i = fr; i <= re; i++)` não funciona para fila circular**
-// - A fila é circular. Quando `frente > re`, esse `for` simplesmente **não percorre a fila corretamente**.
-// - Exemplo: se `frente = 4` e `re = 1`, esse `for` nem roda, mesmo com dados na fila.
-
-// ---
-
-// ### ❌ **2. `resul` pode ficar indefinido**
-// - Se o dado **não for encontrado**, `resul` **nunca é inicializado** antes de ser retornado.
-
-// ---
-
-// ### ⚠️ **3. A fila original `f` é passada por valor**
-// - Modificações como `f.frente = fr` e `f.re = fr - 1` **não afetam a fila original fora da função**. Isso pode dar falsa impressão de restauração.
-
-// ---
-
-// ### ⚠️ **4. O segundo `for` usa novamente `i = frente até re`, mesma limitação**
-// - Mesmo erro do primeiro loop: não lida com fila circular corretamente.
-
-// ---
-
-// ### ✅ Resumo:
-// A ideia está no caminho certo, mas precisa:
-// - Lidar corretamente com fila circular (usar `% MAX_NODOS`)
-// - Inicializar `resul`
-// - Corrigir lógica de restauração
-// - Garantir que a fila original permaneça inalterada
-
-// Se quiser, posso te ajudar a reestruturar isso corretamente.
+int tamanhoFila(FilaCF *f) {
+     int tamanho;
+     if(estaVazia(*f)){
+          return FILA_VAZIA;
+     }
+     if (f->re >= f->frente) {
+          tamanho = f->frente - f->re  + 1;
+          return tamanho;
+     }
+     tamanho = MAX_NODOS - f->frente - f->re + 1;
+     return tamanho;
+}
