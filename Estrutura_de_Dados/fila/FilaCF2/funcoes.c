@@ -90,8 +90,10 @@ int pesquisa(FilaCF *f, int codigo) {
 
 void exibeFila(FilaCF f){
      int i;
-     for (i=f.frente; i<=f.re; i++)
-         printf("%d ", f.v[i]);
+     for (i=f.frente; i<=f.re; i++) {
+          printf("%d\n", f.v[i].cod);
+          printf("%.2f\n", f.v[i].peso);
+     }
      printf("\nFr= %d - Re= %d\n\n",f.frente, f.re);      
 }
 

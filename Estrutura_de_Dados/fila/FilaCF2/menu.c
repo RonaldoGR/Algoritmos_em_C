@@ -24,9 +24,9 @@ int main()
                  }
                  printf("-- Digite o dado que deseja inserir -- \n");
                  printf("C�digo: ");
-                 scanf("%d", dado.cod);
+                 scanf("%d", &dado.cod);
                  printf("Peso: ");
-                 scanf("%f", dado.peso);
+                 scanf("%f", &dado.peso);
                  insere(&fi, dado);   
                  break;
             case 2:
@@ -36,7 +36,9 @@ int main()
                  }
                  dado = fi.v[fi.frente];
                  retira(&fi, &dado);   
-                 printf("Dado %d retirado com sucesso!\n", &dado);
+                 printf("Dado retirado com sucesso!\n");
+                 printf("Código: %d\n", fi.v[fi.frente].cod);
+                 printf("Peso: %.2f\n", fi.v[fi.frente].peso);
                  break;
             case 3:  
                  int nodosDisponiveis;
