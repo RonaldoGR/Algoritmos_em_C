@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include "Fila_SE.h"
+
+
+int main(void) {
+	int op;
+	FilaSE fila;
+	setlocale(LC_ALL, "Portuguese");
+	
+	criaFila(&fila);
+	
+	do {
+		
+		printf("+-----------------  MENU -----------------+\n");
+		printf("\t0 --->\t  Fim\n");
+		printf("\t1 --->\t Insere\n");
+		printf("\t2 --->\t Retira\n");
+		printf("\t3 --->\t Quantidade de nodos\n");
+		printf("\t4 --->\t Exibe situacao da fila\n");
+		printf("\t5 --->\t Consulta frente\n");
+		printf("+-----------------------------------------+\n");
+		printf("\n\n");
+		printf("Digite uma operação: ");
+		scanf("%d", &op);
+		
+		switch (op) {
+			case 0:
+				printf("Saindo...\n");
+				break;
+			
+			case 1: {
+				
+				Dado dado;
+				printf("Digite o código: ");
+				scanf("%d", &dado.cod);
+				printf("Digite o peso: ");
+				scanf("%f", &dado.peso);
+				printf("\n");
+				insere(&fila, dado);
+				break;
+			}
+			case 2: {
+				if(estaVazia(&fila)) {
+					printf("A fila está vazia\n");
+					break;
+				}
+				Dado dadoRetirado;
+				retira(&fila, &dadoRetirado);
+				printf(" --- Dado retirado com sucesso! --- \n");
+				printf("+-----------------------+\n");
+				printf("| Codigo: %d\t\t|\n", dadoRetirado.cod);
+				printf("| Peso: %.2f\t\t|\n", dadoRetirado.peso);
+				printf("+-----------------------+\n");
+				printf("\n");
+				break;	
+			}
+			
+			case 3: {
+				int quantidadeDeNodos = 0;
+			
+				if(estaVazia(&fila)){
+					printf("Quantidade de nodos: %d\n", quantidadeDeNodos);
+					printf("\n");
+					break;
+				}	
+					
+				Nodo *nodoFrente = fila.frente;	
+					
+					
+				 while(nodoFrente != NULL) {
+				 	quantidadeDeNodos++;
+				 	nodoFrente = nodoFrente->prox;
+				 }
+				 
+				 printf("Quantidade de nodos: %d\n", quantidadeDeNodos);
+				 printf("\n");
+				 break;
+			}
+			case 4:
+				if (estaVazia(&fila) == FILA_VAZIA){
+					printf("A fila está vazia\n");
+					printf("\n");
+					break;
+				}
+				printf("A fila possui 1 ou mais nodos\n");
+				printf("\n");
+				break;	 
+			case 5: {
+				Dado dadoDaFrente;
+				if (consultaFrente(&fila,&dadoDaFrente) == FILA_VAZIA){
+					printf("A fila está vazia\n");
+					break;
+				}
+				
+				printf("--- DADOS DA FRENTE DA FILA --- \n");
+				printf("+-----------------------+\n");
+				printf("| Códio: %d\t\t|\n", dadoDaFrente.cod);
+				printf("| Peso: %.2f\t\t|\n", dadoDaFrente.peso);
+				printf("+-----------------------+\n");
+				break;
+			}
+			default:
+				break;
+			}
+			exibe(fila);
+		}while (op != 0);
+
+	
+	return 0;
+}
