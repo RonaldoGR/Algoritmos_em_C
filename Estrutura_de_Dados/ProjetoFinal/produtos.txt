@@ -1,0 +1,1 @@
+ 1 Cimento_Votoran Saco_de_50kg_para_construcao 10 2 Areia_Media Saco_de_25kg_para_construcao 7 3 Cal_Hidratada Saco_de_50kg_para_construcao 5 4 Argamassa_Pronta Saco_de_25kg_para_construcao 3 5 Gesso_Em_Po Saco_de_50kg_para_construcao 2

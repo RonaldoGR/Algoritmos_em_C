@@ -1,0 +1,6 @@
+ 3 1 3 8 Brita Saco_de_20kg_para_construcao 6 Areia_Fina Saco_de_25kg_para_construcao 6 Areia_Fina Saco_de_25kg_para_construcao
+ 3 1 3 8 Brita Saco_de_20kg_para_construcao 6 Areia_Fina Saco_de_25kg_para_construcao 7 Rejunte Saco_10kg_para_construcao
+ 2 1 2 6 Areia_Fina Saco_de_25kg_para_construcao 8 Brita Saco_de_20kg_para_construcao
+ 2 1 1 8 Brita Saco_de_20kg_para_construcao
+ 1 1 2 8 Brita Saco_de_20kg_para_construcao 6 Areia_Fina Saco_de_25kg_para_construcao
+ 1 1 2 7 Rejunte Saco_10kg_para_construcao 8 Brita Saco_de_20kg_para_construcao
