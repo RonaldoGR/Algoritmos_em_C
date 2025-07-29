@@ -8,7 +8,6 @@
 #define CODIGO_INEXISTENTE 3 
 #define FALHOU 4
 
-
 typedef struct {
 	int cod;
 	float peso;
@@ -42,7 +41,8 @@ int excluiNodo(ListaDE *lista, int codigo, Dado *dado);
 int consultaPorCodigo(ListaDE *lista, int codigo, Dado *dado);
 void exibeLista(ListaDE lista);
 int quantidadeDeNodos(ListaDE lista);
-	
+int gravarDados(ListaDE *lista);
+int leituraDeDados(ListaDE *lista, Dado dado);	
 
 
 #endif
