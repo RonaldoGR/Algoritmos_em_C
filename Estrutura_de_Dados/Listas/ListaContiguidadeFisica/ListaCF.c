@@ -3,7 +3,7 @@
 ----------------------------------*/
 
 #include <stdio.h>
-#include "ListaCF.h"
+#include "ListaCF_H.h"
 
 /*-----------------
 * S: uma lista
