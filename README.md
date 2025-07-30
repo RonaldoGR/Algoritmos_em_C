@@ -1,4 +1,6 @@
 
+![C](https://img.shields.io/badge/C-language-blue?logo=c)
+
 # Exercícios Acadêmicos em C
 
 Este repositório reúne **exercícios acadêmicos** desenvolvidos durante as disciplinas de **Lógica de Programação** e **Estrutura de Dados** com a linguagem **C**, utilizando abordagens estruturadas e recursos como `structs`, ponteiros, manipulação de arquivos e diversas estruturas de dados.
@@ -108,4 +110,7 @@ O projeto simula o sistema de uma **loja de materiais de construção**, permiti
 - Simula parcialmente operações CRUD com um banco de dados
 
 ---
+# Autor
 
+Ronaldo Gandra Rocha - Acadêmico no IFSUL (Instituto Federal de Educação, Ciência e Tecnologia) 
+- Graduando em Tecnologia em Sistemas Para Internet
